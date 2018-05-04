@@ -98,6 +98,7 @@ open class PKHUD: NSObject {
         }
         set {
             container.frameView.content = newValue
+            container.frameView.content.backgroundColor = backgroundColor
             startAnimatingContentView()
         }
     }
@@ -203,6 +204,28 @@ open class PKHUD: NSObject {
         // Show the HUD only if the task is still running
         if (graceTimer?.isValid)! {
             showContent()
+        }
+    }
+}
+
+extension PKHUD{
+
+    fileprivate struct AssociatedKeys {
+        static var mixedbackColorKey = "layer.mixedbackColorKey"
+        static var contentColorKey = "layer.contentColorKey"
+    }
+    
+   open var backgroundColor: UIColor? {
+        get { return objc_getAssociatedObject(self, &AssociatedKeys.mixedbackColorKey) as? UIColor }
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.mixedbackColorKey, newValue as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    open var contentColor: UIColor?{
+        get { return objc_getAssociatedObject(self, &AssociatedKeys.contentColorKey) as? UIColor }
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.contentColorKey, newValue as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }

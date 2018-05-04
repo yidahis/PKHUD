@@ -45,7 +45,7 @@ open class PKHUDSquareBaseView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 17.0)
-        label.textColor = UIColor.black.withAlphaComponent(0.85)
+        label.textColor = PKHUD.sharedHUD.contentColor ?? UIColor.black.withAlphaComponent(0.85)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.25
         return label
@@ -55,7 +55,7 @@ open class PKHUDSquareBaseView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14.0)
-        label.textColor = UIColor.black.withAlphaComponent(0.7)
+        label.textColor = PKHUD.sharedHUD.contentColor ?? UIColor.black.withAlphaComponent(0.7)
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 2
         label.adjustsFontSizeToFitWidth = true
